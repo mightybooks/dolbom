@@ -1,10 +1,14 @@
-// app/result/page.tsx
-
 "use client";
-export const dynamic = "force-dynamic";
 
 // ---------------------------------------
-// Kakao 타입 선언 (카카오 SDK 전역 타입 보정)
+// Next.js가 프리렌더를 절대 하지 않도록 강제하는 3종 세트
+// ---------------------------------------
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const revalidate = 0;
+
+// ---------------------------------------
+// Kakao 타입 선언
 // ---------------------------------------
 declare global {
   interface Window {
@@ -12,12 +16,13 @@ declare global {
   }
 }
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import RESULT_MAP from "./resultMap";
 
 export default function ResultPage() {
+  // Suspense 에러 방지: CSR 환경에서만 동작하도록 이미 선언되어 있음
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -27,7 +32,7 @@ export default function ResultPage() {
   const [copied, setCopied] = useState(false);
 
   // ---------------------------------------
-  // 1) 링크 복사 기능
+  // 1) 링크 복사
   // ---------------------------------------
   async function copyLink() {
     try {
@@ -50,7 +55,6 @@ export default function ResultPage() {
 
     const Kakao = window.Kakao;
 
-    // SDK 초기화(중복 초기화 방지)
     if (!Kakao.isInitialized()) {
       Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
     }
@@ -60,7 +64,6 @@ export default function ResultPage() {
       content: {
         title: result.title,
         description: result.description,
-        // 배포 환경에서 정상적으로 동작하도록 절대경로 사용
         imageUrl: `${window.location.origin}${result.og}`,
         link: {
           mobileWebUrl: window.location.href,
