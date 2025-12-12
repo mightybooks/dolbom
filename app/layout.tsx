@@ -23,9 +23,7 @@ export default function RootLayout({
            - 반드시 beforeInteractive 전략 사용
         ----------------------------------------------------- */}
         <Script
-          src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
-          integrity="sha384-kP4qO5E0p4nHnU932VzXIvNhpNngJfN7Z7rksQMqyjgKx1G2wJHRV9H7r9JJv6fC"
-          crossOrigin="anonymous"
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js"
           strategy="beforeInteractive"
         />
 
