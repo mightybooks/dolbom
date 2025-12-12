@@ -1,7 +1,9 @@
 // app/result/page.tsx
-export const dynamic = "force-dynamic";  // ★ 추가!
 
 "use client";
+
+// ★ 두 번째 줄부터 아무거나 와도 됨
+export const dynamic = "force-dynamic";
 
 // ---------------------------------------
 // Kakao 타입 선언 (카카오 SDK 전역 타입 보정)
