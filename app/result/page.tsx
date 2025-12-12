@@ -1,4 +1,5 @@
 // app/result/page.tsx
+export const dynamic = "force-dynamic";  // ★ 추가!
 
 "use client";
 
