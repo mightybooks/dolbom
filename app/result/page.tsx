@@ -1,8 +1,6 @@
 // app/result/page.tsx
 
 "use client";
-
-// ★ 두 번째 줄부터 아무거나 와도 됨
 export const dynamic = "force-dynamic";
 
 // ---------------------------------------
