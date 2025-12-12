@@ -1,6 +1,8 @@
-// app/layout.tsx
+// /app/layout.tsx
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+import { TestProvider } from "./test/TestContext";
 
 export const metadata: Metadata = {
   title: "돌봄에너지 테스트 - dolbom",
@@ -14,8 +16,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="min-h-screen bg-white text-slate-900">
-        {children}
+      <body>
+        {/* -----------------------------------------------------
+           Kakao JavaScript SDK
+           - 공유 기능을 위해 전역 window.Kakao 생성
+           - 반드시 beforeInteractive 전략 사용
+        ----------------------------------------------------- */}
+        <Script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+          integrity="sha384-kP4qO5E0p4nHnU932VzXIvNhpNngJfN7Z7rksQMqyjgKx1G2wJHRV9H7r9JJv6fC"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
+
+        {/* 전역 상태 공급 (answers 저장소) */}
+        <TestProvider>{children}</TestProvider>
       </body>
     </html>
   );

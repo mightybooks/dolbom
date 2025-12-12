@@ -96,7 +96,7 @@ export const RABBIT_META_CARD = {
 // scoring.ts + results.ts 연결용
 // --------------------------------------------------------------
 
-import { calculateCareScore, determineResult } from "./scoring";
+import { calculateCareScore, determineResult } from "../analytics/scoring";
 
 export function getFinalCareResult(selected: Record<string, string>) {
   const score = calculateCareScore(selected);

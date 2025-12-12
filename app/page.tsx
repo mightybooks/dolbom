@@ -3,43 +3,49 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-emerald-50">
-      <div className="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-16">
-        <header className="space-y-3">
+    <main className="min-h-screen bg-emerald-50 flex items-center justify-center px-6 py-12">
+      <div className="max-w-md w-full flex flex-col items-center text-center space-y-8">
+
+        {/* 타이틀 */}
+        <header className="space-y-2">
           <p className="text-sm font-semibold text-emerald-700">
-            토실토실 프로젝트 · 돌봄에너지 테스트
+            Care Energy Test · 돌봄에너지 테스트
           </p>
-          <h1 className="text-3xl font-bold text-emerald-900">
-            나는 어느 정도의 <span className="underline">돌봄 에너지</span>를 가지고 있을까?
+          <h1 className="text-2xl font-bold text-emerald-900">
+            당신의 돌봄에너지를 측정합니다
           </h1>
-          <p className="text-base leading-relaxed text-slate-700">
-            7개의 질문에 답하면, 지금 나의 돌봄 감수성을
-            토실토실 세계관에 맞춘 이야기와 함께 보여드립니다.
-            토끼를 키우지 않아도, 반려동물이 없어도 참여하실 수 있어요.
-          </p>
         </header>
 
-        <section className="rounded-2xl bg-white p-6 shadow-sm">
-          <h2 className="mb-2 text-lg font-semibold text-slate-900">
-            어떻게 진행되나요?
-          </h2>
-          <ol className="list-decimal space-y-1 pl-5 text-sm text-slate-700">
-            <li>가볍게 7개의 질문에 답합니다.</li>
-            <li>대표님의 선택을 바탕으로 돌봄에너지 이야기가 생성됩니다.</li>
-            <li>SNS에서 공유하기 좋은 결과 화면이 제공됩니다.</li>
-          </ol>
-        </section>
+        {/* 인트로 이미지 */}
+        <img
+          src="/tosil/intro/introimage.png"
+          alt="인트로 이미지"
+          className="w-64 mx-auto"
+        />
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-slate-600">
-            지금은 테스트 버전입니다. 결과는 언제든 바뀔 수 있어요.
-          </p>
+        {/* 한 줄 설명 */}
+        <p className="text-base text-slate-700">
+          지금부터 당신의 돌봄 감수성을 확인해보세요.
+        </p>
+
+        {/* 버튼 2개 */}
+        <div className="flex flex-col gap-3 w-full">
+
+          {/* 국문 테스트 시작 */}
           <Link
-            href="/test"
-            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            href="/test/q1"
+            className="w-full rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
           >
-            돌봄에너지 테스트 시작하기
+            테스트 시작하기
           </Link>
+
+          {/* 영문 버튼 (아직 링크 없음) */}
+          <button
+            disabled
+            className="w-full rounded-full border border-emerald-600 px-6 py-3 text-sm font-semibold text-emerald-700 opacity-60 cursor-default"
+          >
+            Test Start
+          </button>
         </div>
       </div>
     </main>

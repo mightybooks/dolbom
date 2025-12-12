@@ -24,3 +24,52 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes updown { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+.animate-updown { animation: updown 1.6s infinite ease-in-out; }
+
+@keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.animate-flash { animation: flash 1.2s ease-in-out 1; }
+
+@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-4px); } 100% { transform: translateX(0); } }
+.animate-shake { animation: shake 0.8s infinite; }
+
+@keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; } }
+.animate-fade { animation: fade 1.5s ease-in-out 1; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.breathe {
+  animation: breathe 2.2s ease-in-out infinite;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop-once {
+  animation: pop 0.45s ease-out 1;
+}
+
+@keyframes bob-up {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bob-down {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+  100% { transform: translateY(0); }
+}
+
+.surimi-book {
+  animation: bob-up 1.6s ease-in-out infinite;
+}
+
+.tosil-book {
+  animation: bob-down 1.6s ease-in-out infinite;
+}
+
