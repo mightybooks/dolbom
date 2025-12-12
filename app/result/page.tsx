@@ -15,41 +15,41 @@ import { useEffect, useState } from "react";
 import RESULT_MAP from "./resultMap";
 
 // RESULT_MAP의 key를 그대로 타입으로 사용
-type ResultType = keyof typeof RESULT_MAP; // "plant" | "turtle" | ...
+type ResultType = keyof typeof RESULT_MAP;
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
 export default function ResultPage() {
   const router = useRouter();
 
-  // 기본값은 "plant"
+  // 기본값
   const [type, setType] = useState<ResultType>("plant");
   const [copied, setCopied] = useState(false);
 
   // ---------------------------------------
-  // URL 쿼리에서 ?type= 값 직접 읽기 (useSearchParams 제거)
+  // URL 쿼리에서 ?type= 값 읽기 (CSR 전용)
   // ---------------------------------------
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const params = new URLSearchParams(window.location.search);
     const t = params.get("type") as ResultType | null;
 
     if (t && t in RESULT_MAP) {
       setType(t);
-    } else {
-      setType("plant");
     }
   }, []);
 
-  const result = RESULT_MAP[type] || RESULT_MAP["plant"];
+  const result = RESULT_MAP[type];
+
+  const baseUrl = SITE_URL || window.location.origin;
+  const currentUrl = `${baseUrl}/result?type=${type}`;
 
   // ---------------------------------------
   // 1) 링크 복사
   // ---------------------------------------
   async function copyLink() {
     try {
-      if (typeof window === "undefined") return;
-
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch (e) {
@@ -58,11 +58,9 @@ export default function ResultPage() {
   }
 
   // ---------------------------------------
-  // 2) 카카오톡 공유 기능
+  // 2) 카카오톡 공유
   // ---------------------------------------
   function shareKakao() {
-    if (typeof window === "undefined") return;
-
     if (!window.Kakao) {
       alert("카카오 SDK가 로드되지 않았습니다.");
       return;
@@ -79,18 +77,18 @@ export default function ResultPage() {
       content: {
         title: result.title,
         description: result.description,
-        imageUrl: `${window.location.origin}${result.og}`,
+        imageUrl: `${baseUrl}${result.og}`,
         link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
+          mobileWebUrl: currentUrl,
+          webUrl: currentUrl,
         },
       },
       buttons: [
         {
           title: "테스트 해보기",
           link: {
-            mobileWebUrl: `${window.location.origin}/test/q1`,
-            webUrl: `${window.location.origin}/test/q1`,
+            mobileWebUrl: `${baseUrl}/test/q1`,
+            webUrl: `${baseUrl}/test/q1`,
           },
         },
       ],
@@ -103,7 +101,7 @@ export default function ResultPage() {
   return (
     <main className="min-h-screen bg-emerald-50 px-6 py-10 flex flex-col items-center">
       <section className="max-w-md w-full bg-white p-6 rounded-2xl shadow-sm">
-        {/* 결과 이미지 */}
+
         <Image
           src={result.image}
           width={500}
@@ -112,19 +110,15 @@ export default function ResultPage() {
           className="w-full rounded-xl mb-6"
         />
 
-        {/* 제목 */}
         <h1 className="text-2xl font-bold text-emerald-900 mb-2 text-center">
           당신은 <span className="underline">{result.title}</span>입니다
         </h1>
 
-        {/* 설명 */}
         <p className="text-slate-700 text-center leading-relaxed mb-8">
           {result.description}
         </p>
 
-        {/* 공유 버튼 */}
         <div className="flex flex-col gap-3 mb-8">
-          {/* 카카오톡 공유 */}
           <button
             onClick={shareKakao}
             className="w-full rounded-full bg-[#FEE500] text-black font-semibold py-3 hover:bg-yellow-300"
@@ -132,7 +126,6 @@ export default function ResultPage() {
             카카오톡으로 공유하기
           </button>
 
-          {/* 링크 복사 */}
           <button
             onClick={copyLink}
             className="w-full rounded-full bg-white border border-slate-300 text-slate-700 font-semibold py-3 hover:bg-slate-50"
@@ -141,7 +134,6 @@ export default function ResultPage() {
           </button>
         </div>
 
-        {/* CTA */}
         <div className="flex flex-col gap-3">
           <button
             onClick={() => router.push("/test/q1")}
@@ -157,6 +149,7 @@ export default function ResultPage() {
             토실토실 프로젝트 보러가기
           </button>
         </div>
+
       </section>
     </main>
   );
