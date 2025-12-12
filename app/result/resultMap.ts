@@ -1,5 +1,7 @@
 // app/result/resultMap.ts
 
+"use client";
+
 export type ResultType =
   | "plant"
   | "turtle"
