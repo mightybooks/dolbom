@@ -10,6 +10,15 @@ export type CareType =
   | "cat"
   | "dog"
   | "rabbit"
+  | "alien"
+  | "mix";
+
+  export type CareScoreType =
+  | "plant"
+  | "turtle"
+  | "cat"
+  | "dog"
+  | "rabbit"
   | "alien";
 
 export interface ChoiceOption {
@@ -419,7 +428,7 @@ export const QUESTIONS: QuestionItem[] = [
 // ============================================================================
 
 export function calculateCareScore(selected: Record<string, string>) {
-  const score: Record<CareType, number> = {
+  const score: Record<CareScoreType, number> = {
     plant: 0,
     turtle: 0,
     cat: 0,
@@ -436,7 +445,7 @@ export function calculateCareScore(selected: Record<string, string>) {
     if (!opt) continue;
 
     if (opt.type === "weird") {
-      score.alien += 1; // 병맛 누적
+      score.alien += 1;
     } else {
       score[opt.type] += 1;
     }
@@ -451,18 +460,32 @@ export function calculateCareScore(selected: Record<string, string>) {
 // 그 외는 최고 점수 타입
 // ============================================================================
 
-export function determineResult(score: Record<CareType, number>): CareType {
+export function determineResult(
+  score: Record<CareScoreType, number>
+): CareType {
+  // 1. 외계 우선
   if (score.alien >= 3) return "alien";
 
-  let best: CareType = "rabbit";
-  let max = -1;
+  // 2. 비교 대상 (mix 제외)
+  const normalTypes: Exclude<CareScoreType, "alien">[] = [
+    "plant",
+    "turtle",
+    "cat",
+    "dog",
+    "rabbit",
+  ];
 
-  (["plant", "turtle", "cat", "dog", "rabbit"] as CareType[]).forEach((key) => {
-    if (score[key] > max) {
-      max = score[key];
-      best = key;
-    }
-  });
+  // 3. 최고 점수
+  const max = Math.max(...normalTypes.map((t) => score[t]));
 
-  return best;
+  // 4. 최고 점수 타입들
+  const topTypes = normalTypes.filter((t) => score[t] === max);
+
+  // 5. 단독 1위
+  if (topTypes.length === 1) {
+    return topTypes[0];
+  }
+
+  // 6. 동점 → 짬뽕형
+  return "mix";
 }

@@ -58,6 +58,12 @@ const RESULT_MAP: Record<string, {
     image: "/tosil/results/result_alien.png",
     og: "/tosil/og/og_alien.png",
   },
+  mix: {
+  title: "짬뽕형 돌봄러",
+  description: "당신은 두 가지 이상의 돌봄 스타일이 뒤섞인 독특한 복합형입니다.",
+  image: "/tosil/results/result_mix.png",
+  og: "/tosil/og/og_mix.png",
+ },
 };
 
 export default RESULT_MAP;

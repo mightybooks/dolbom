@@ -72,6 +72,8 @@ export default function ResultPage() {
       Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
     }
 
+    const baseUrl = window.location.origin;
+
     Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
@@ -79,16 +81,16 @@ export default function ResultPage() {
         description: result.description,
         imageUrl: `${baseUrl}${result.og}`,
         link: {
-          mobileWebUrl: currentUrl,
-          webUrl: currentUrl,
+          mobileWebUrl: baseUrl,
+          webUrl: baseUrl,
         },
       },
       buttons: [
         {
           title: "테스트 해보기",
           link: {
-            mobileWebUrl: `${baseUrl}/test/q1`,
-            webUrl: `${baseUrl}/test/q1`,
+            mobileWebUrl: baseUrl,
+            webUrl: baseUrl,
           },
         },
       ],
