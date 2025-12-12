@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 // ---------------------------------------
 // Kakao 타입 선언
 // ---------------------------------------
@@ -11,26 +9,46 @@ declare global {
   }
 }
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RESULT_MAP from "./resultMap";
 
+// RESULT_MAP의 key를 그대로 타입으로 사용
+type ResultType = keyof typeof RESULT_MAP; // "plant" | "turtle" | ...
+
 export default function ResultPage() {
-  // Suspense 에러 방지: CSR 환경에서만 동작하도록 이미 선언되어 있음
-  const searchParams = useSearchParams();
   const router = useRouter();
 
-  const type = searchParams.get("type") || "plant";
-  const result = RESULT_MAP[type] || RESULT_MAP["plant"];
-
+  // 기본값은 "plant"
+  const [type, setType] = useState<ResultType>("plant");
   const [copied, setCopied] = useState(false);
+
+  // ---------------------------------------
+  // URL 쿼리에서 ?type= 값 직접 읽기 (useSearchParams 제거)
+  // ---------------------------------------
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const t = params.get("type") as ResultType | null;
+
+    if (t && t in RESULT_MAP) {
+      setType(t);
+    } else {
+      setType("plant");
+    }
+  }, []);
+
+  const result = RESULT_MAP[type] || RESULT_MAP["plant"];
 
   // ---------------------------------------
   // 1) 링크 복사
   // ---------------------------------------
   async function copyLink() {
     try {
+      if (typeof window === "undefined") return;
+
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
@@ -43,6 +61,8 @@ export default function ResultPage() {
   // 2) 카카오톡 공유 기능
   // ---------------------------------------
   function shareKakao() {
+    if (typeof window === "undefined") return;
+
     if (!window.Kakao) {
       alert("카카오 SDK가 로드되지 않았습니다.");
       return;
@@ -83,7 +103,6 @@ export default function ResultPage() {
   return (
     <main className="min-h-screen bg-emerald-50 px-6 py-10 flex flex-col items-center">
       <section className="max-w-md w-full bg-white p-6 rounded-2xl shadow-sm">
-
         {/* 결과 이미지 */}
         <Image
           src={result.image}
@@ -105,7 +124,6 @@ export default function ResultPage() {
 
         {/* 공유 버튼 */}
         <div className="flex flex-col gap-3 mb-8">
-
           {/* 카카오톡 공유 */}
           <button
             onClick={shareKakao}
@@ -139,7 +157,6 @@ export default function ResultPage() {
             토실토실 프로젝트 보러가기
           </button>
         </div>
-
       </section>
     </main>
   );
