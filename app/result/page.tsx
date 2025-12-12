@@ -1,11 +1,6 @@
 "use client";
 
-// ---------------------------------------
-// Next.js가 프리렌더를 절대 하지 않도록 강제하는 3종 세트
-// ---------------------------------------
 export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-export const revalidate = 0;
 
 // ---------------------------------------
 // Kakao 타입 선언
