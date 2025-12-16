@@ -1,21 +1,15 @@
-// app/result/resultMap.ts
+// data/ko/resultMap.ts
 
-"use client";
+import type { CareType } from "@/lib/types/care";
 
-export type ResultType =
-  | "plant"
-  | "turtle"
-  | "dog"
-  | "cat"
-  | "rabbit"
-  | "alien";
-
-const RESULT_MAP: Record<string, {
+export type CareResultContent = {
   title: string;
   description: string;
   image: string;
   og: string;
-}> = {
+};
+
+const RESULT_MAP: Record<CareType, CareResultContent> = {
   plant: {
     title: "식물형 돌봄러",
     description:
@@ -59,11 +53,12 @@ const RESULT_MAP: Record<string, {
     og: "/tosil/og/og_alien.png",
   },
   mix: {
-  title: "짬뽕형 돌봄러",
-  description: "당신은 두 가지 이상의 돌봄 스타일이 뒤섞인 독특한 복합형입니다.",
-  image: "/tosil/results/result_mix.png",
-  og: "/tosil/og/og_mix.png",
- },
+    title: "짬뽕형 돌봄러",
+    description:
+      "당신은 한 가지 방식으로 돌보는 사람이 아닙니다. 두 가지 이상의 돌봄 스타일이 뒤섞인 독특한 복합형입니다.",
+    image: "/tosil/results/result_mix.png",
+    og: "/tosil/og/og_mix.png",
+  },
 };
 
 export default RESULT_MAP;

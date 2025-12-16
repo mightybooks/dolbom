@@ -10,7 +10,7 @@ export default function LoadingPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/test/result");
+      router.replace("/en/test/result");
     }, 2800);
 
     return () => clearTimeout(timer);
@@ -32,11 +32,11 @@ export default function LoadingPage() {
       </div>
 
       <p className="text-base text-slate-700 mb-2 text-center max-w-sm leading-relaxed">
-        테스트 결과를 분석 중입니다.<br />
-        돌봄에너지를 극대화하고 싶다면<br />
-        한 번 읽어봐. 아니, 두 번 읽어봐.<br />
-        도서관에도 신청하고, 친구들에게도 권하고…<br />
-        그러면 넌 건강해지고, 부자가 되고…
+        Analyzing your results...<br />
+        If you want to boost your care energy,<br />
+        read it once. No—read it twice.<br />
+        Request it at your library, recommend it to friends…<br />
+        Then you might become healthier. And maybe richer.
       </p>
     </main>
   );

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTest } from "../TestContext";
-import { QUESTIONS } from "@/data/ko/questions";
+import { QUESTIONS } from "@/data/en/questions";
 import { pickRandomOptions } from "@/lib/questions/pickRandomOptions";
 
 export default function Question6Page() {
@@ -28,7 +28,7 @@ export default function Question6Page() {
   // 🔍 디버그용 콘솔 로그
   console.log(`Q${questionId} answered:`, optionId);
 
-    router.push("/test/q7");
+    router.push("q7");
   };
 
   return (

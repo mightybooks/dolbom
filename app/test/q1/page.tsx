@@ -2,10 +2,13 @@
 
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTest } from "../TestContext";
-import { QUESTIONS, pickRandomOptions } from "@/lib/analytics/scoring";
+import { QUESTIONS } from "@/data/ko/questions";
+import { pickRandomOptions } from "@/lib/questions/pickRandomOptions";
 
 export default function Question1Page() {
   const router = useRouter();

@@ -14,6 +14,9 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold text-emerald-900">
             당신의 돌봄에너지를 측정합니다
           </h1>
+          <p className="text-sm text-slate-600 mt-1">
+            Measure your care energy
+          </p>
         </header>
 
         {/* 인트로 이미지 */}
@@ -26,6 +29,9 @@ export default function HomePage() {
         {/* 한 줄 설명 */}
         <p className="text-base text-slate-700">
           지금부터 당신의 돌봄 감수성을 확인해보세요.
+        </p>
+        <p className="text-sm text-slate-500 mt-1">
+          A short test to see how you care for others.
         </p>
 
         {/* 버튼 2개 */}
@@ -40,12 +46,12 @@ export default function HomePage() {
           </Link>
 
           {/* 영문 버튼 (아직 링크 없음) */}
-          <button
-            disabled
+          <Link
+            href="/en/test/q1"
             className="w-full rounded-full border border-emerald-600 px-6 py-3 text-sm font-semibold text-emerald-700 opacity-60 cursor-default"
           >
             Test Start
-          </button>
+          </Link>
         </div>
       </div>
     </main>
