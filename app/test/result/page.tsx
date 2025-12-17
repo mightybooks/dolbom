@@ -141,7 +141,7 @@ export default function ResultPage() {
           </button>
 
           <button
-            onClick={() => router.push("https://sulimstudio.com/projects/tosiltosil")}
+            onClick={() => router.push("https://surimstudio.com/projects/tosiltosil")}
             className="w-full rounded-full border border-emerald-600 text-emerald-700 py-3"
           >
             토실토실 프로젝트 보러가기
