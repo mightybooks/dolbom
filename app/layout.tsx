@@ -7,6 +7,18 @@ import { TestProvider } from "./test/TestContext";
 export const metadata: Metadata = {
   title: "돌봄에너지 테스트 - dolbom",
   description: "돌봄 감수성을 확인하는 토실토실 돌봄에너지 테스트",
+  openGraph: {
+    title: "돌봄에너지 테스트 - dolbom",
+    description: "돌봄 감수성을 확인하는 토실토실 돌봄에너지 테스트",
+    images: [
+      {
+        url: "https://dolbom-mu.vercel.app/tosil/og/introog.png",
+        width: 1200,
+        height: 630,
+        alt: "돌봄에너지 테스트",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
