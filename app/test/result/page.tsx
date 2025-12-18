@@ -119,7 +119,7 @@ export default function ResultPage() {
         <div className="flex flex-col gap-3 mb-8 mt-8">
           <button
             onClick={shareKakao}
-            className="w-full rounded-full bg-[#FEE500] py-3 font-semibold"
+            className="w-full rounded-full bg-[#FEE500] py-3 font-semibold text-[#191919]"
           >
             카카오톡으로 공유하기
           </button>
