@@ -33,6 +33,7 @@ export default function LoadingPage() {
 
       <p className="text-base text-slate-700 mb-2 text-center max-w-sm leading-relaxed">
         테스트 결과를 분석 중입니다.<br />
+        사실 이 테스트는 책 한 권에서 시작된 프로젝트의 일부입니다.<br/>
         돌봄에너지를 극대화하고 싶다면<br />
         한 번 읽어봐. 아니, 두 번 읽어봐.<br />
         도서관에도 신청하고, 친구들에게도 권하고…<br />
