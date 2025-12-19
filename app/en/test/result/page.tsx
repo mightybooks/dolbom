@@ -106,7 +106,7 @@ return (
         </button>
 
         <button
-          onClick={() => router.push("https://surimstudio.com/projects/tosiltosil/en")}
+          onClick={() => router.push("https://surimstudio.com/projects/tosiltosil/en?ref=care_energy")}
           className="w-full rounded-full bg-white border border-emerald-600 text-emerald-700 font-semibold py-3 hover:bg-emerald-50"
         >
           Visit Tosil Project

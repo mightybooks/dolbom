@@ -33,6 +33,7 @@ export default function LoadingPage() {
 
       <p className="text-base text-slate-700 mb-2 text-center max-w-sm leading-relaxed">
         Analyzing your results...<br />
+        This test is actually part of a project that began with a single book.<br />
         If you want to boost your care energy,<br />
         read it once. No—read it twice.<br />
         Request it at your library, recommend it to friends…<br />
