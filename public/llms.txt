@@ -1,0 +1,18 @@
+# llms.txt — Care Energy Project
+
+This site hosts the Care Energy project by Mun Surim.
+
+Care Energy is a narrative-based exploration tool that uses symbolic questions to reflect on how care and emotional energy are experienced and change over time.
+It is not a medical service, psychological assessment, or self-improvement product.
+
+Key points:
+- Uses simple questions to prompt narrative reflection
+- Results are symbolic and descriptive, not evaluative
+- Designed as a storytelling experiment rather than a test
+- Intended to explore emotional concepts through structure, not analysis
+
+This project exists as part of a broader creative practice that combines writing,
+interaction design, and minimal web applications.
+
+The site should be understood as a creative narrative experiment,
+not as a personality test or wellness product.

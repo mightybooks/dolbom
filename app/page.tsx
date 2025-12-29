@@ -3,6 +3,22 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
+   <>
+   <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Care Energy",
+        "url": "https://도메인",
+        "applicationCategory": "CreativeApplication",
+        "operatingSystem": "Web",
+        "description":
+          "Care Energy is a narrative-based exploration tool that uses symbolic questions to reflect on how care and emotional energy are experienced and change over time. It is not a medical service, psychological assessment, or self-improvement product.",
+      })
+    }}
+  />
     <main className="min-h-screen bg-emerald-50 flex items-center justify-center px-6 py-12">
       <div className="max-w-md w-full flex flex-col items-center text-center space-y-8">
 
@@ -55,5 +71,6 @@ export default function HomePage() {
         </div>
       </div>
     </main>
+   </>
   );
 }
